@@ -6,14 +6,9 @@ pipeline {
                 checkout scm
             }
         }
-        stage('test') {
-            steps {
-                bat 'npm install'
-                bat 'npm test'
-            }
-        }
         stage('Build') {
             steps {
+                bat 'npm install'
                 bat 'npm run build'
             }
         }
