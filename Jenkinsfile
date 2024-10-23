@@ -6,10 +6,21 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
                 bat 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
                 bat 'npm run build'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                script {
+                    bat "docker build -t devopsminiproject ."
+                }
             }
         }
     }
